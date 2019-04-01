@@ -15,8 +15,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
 
     quotes = db.relationship('Quote', backref='author', lazy=True)
-    user_profile = db.relationship('UserProfile', backref='author', lazy=True)
-    #user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.id'), nullable=False)
+    user_profile = db.relationship('UserProfile', backref='author', lazy=True, uselist=False)
+
+    # user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.id'), nullable=False)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
@@ -30,7 +31,8 @@ class Quote(db.Model):
     suggested_price = db.Column(db.Integer(), nullable=False)
     total_amount_due = db.Column(db.Integer(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    #user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.id'), nullable=False)
+
+    # user_profile_id = db.Column(db.Integer, db.ForeignKey('user_profile.id'), nullable=False)
 
     def __repr__(self):
         return f"Quote('{self.gallons_requested}', '{self.date_requested}')"

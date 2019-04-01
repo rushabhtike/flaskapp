@@ -55,7 +55,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         user_profile = UserProfile(
-            authors=current_user, #changed authors to author, recreate database after changing relationships and keys in models.py
+            author=current_user, #changed authors to author, recreate database after changing relationships and keys in models.py
             full_name=form.full_name.data,
             address_one=form.address_one.data,
             address_two=form.address_two.data,
