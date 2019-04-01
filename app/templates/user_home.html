@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 class="mb-3">Quotes for {{ user.user_id }}({{ quotes.total }})</h1>
+{% for quote in quotes.items %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{{ url_for('users.user_home', username=quote.author.username) }}">{{
+                quote.author.username}}</a>
+            <small class="text-muted">{{ quote.date_posted }}</small>
+        </div>
+        <h2><a class="article-title" href="{{ url_for('quotes.quote', quote_id=quote.id) }}">{{ quote.gallons_requested }}</a>
+        </h2>
+        <h2><a class="article-title" href="#">{{ quote.date_requested }}</a></h2>
+        <h2><a class="article-title" href="#">{{ quote.delivery_address }}</a></h2>
+        <h2><a class="article-title" href="#">{{ quote.suggested_price }}</a></h2>
+        <h2><a class="article-title" href="#">{{ quote.total_amount_due }}</a></h2>
+
+    </div>
+</article>
+{% endfor %}
+{% for page_num in quotes.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+{% if quotes.page==page_num %}
+<a class="btn btn-info mb-4" href="{{url_for('users.user_home',username=user.username,page=page_num) }}">{{ page_num }}</a>
+{% else %}
+<a class="btn btn-outline-info mb-4" href="{{url_for('users.user_home',username=user.username,page=page_num) }}">{{ page_num
+    }}</a>
+{% endif %}
+{% else %}
+...
+
+{% endif %}
+{% endfor %}
+
+{% endblock content %}

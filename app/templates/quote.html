@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ quote.author.username}}</a>
+            <small class="text-muted">{{ quote.date_posted }}</small>
+        </div>
+        <h2>{{ quote.gallons_requested }}</h2>
+        <h2>{{ quote.date_requested }}</h2>
+        <h2>{{ quote.delivery_address }}</h2>
+        <h2>{{ quote.suggested_price }}</h2>
+        <h2>{{ quote.total_amount_due }}</h2>
+    </div>
+</article>
+{% endblock content %}
